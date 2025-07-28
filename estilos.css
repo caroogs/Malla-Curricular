@@ -1,1 +1,145 @@
+/* --- Reseteo Básico y Estilos Globales --- */
+:root {
+    --color-fondo: #fdf6e7; /* Un beige muy claro */
+    --color-ramo: #fff;
+    --color-ramo-borde: #e0e0e0;
+    --color-ramo-sombra: rgba(0, 0, 0, 0.05);
+    --color-aprobado: #ffc8dd; /* Rosa pastel */
+    --color-aprobado-texto: #ad5c7a;
+    --color-bloqueado: #f2f2f2;
+    --color-bloqueado-texto: #b0b0b0;
+    --color-texto-principal: #333;
+    --color-header: #f8e5c4; /* Beige arena */
+    --color-notificacion-error: #e74c3c;
+    --color-blanco: #fff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    line-height: 1.6;
+}
+
+/* --- Encabezado y Pie de Página --- */
+header, footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background-color: var(--color-header);
+}
+
+header h1 {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+footer {
+    margin-top: 2rem;
+    font-style: italic;
+    color: #777;
+}
+
+/* --- Contenedor Principal de la Malla --- */
+.malla-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto; /* Permite scroll horizontal en móvil si es necesario */
+    padding: 2rem 1rem;
+    gap: 1.5rem; /* Espacio entre columnas */
+}
+
+/* --- Columnas de Semestres --- */
+.semestre-columna {
+    flex: 1;
+    min-width: 220px; /* Ancho mínimo para cada columna */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espacio entre ramos */
+}
+
+.semestre-titulo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--color-header);
+    margin-bottom: 0.5rem;
+}
+
+/* --- Estilos de los Ramos --- */
+.ramo {
+    background-color: var(--color-ramo);
+    padding: 1rem;
+    border: 1px solid var(--color-ramo-borde);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px var(--color-ramo-sombra);
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.3s ease, color 0.3s ease;
+    user-select: none; /* Evita seleccionar el texto al hacer clic */
+}
+
+.ramo:hover {
+    transform: translateY(-3px);
+}
+
+/* --- Estados de los Ramos --- */
+.ramo.aprobado {
+    background-color: var(--color-aprobado);
+    color: var(--color-aprobado-texto);
+    text-decoration: line-through;
+    font-weight: 600;
+    border-color: var(--color-aprobado);
+}
+
+.ramo.bloqueado {
+    background-color: var(--color-bloqueado);
+    color: var(--color-bloqueado-texto);
+    cursor: not-allowed;
+    border-color: #ddd;
+}
+
+.ramo.bloqueado:hover {
+    transform: none; /* No hay efecto hover en ramos bloqueados */
+}
+
+/* --- Notificaciones --- */
+.notificacion {
+    position: fixed;
+    bottom: -100px; /* Empieza fuera de la pantalla */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-notificacion-error);
+    color: var(--color-blanco);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: bottom 0.5s ease-in-out;
+    z-index: 1000;
+    text-align: center;
+}
+
+.notificacion.visible {
+    bottom: 20px; /* Se desliza hacia arriba */
+}
+
+/* --- Diseño Responsivo --- */
+@media (max-width: 768px) {
+    .malla-container {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 2rem; /* Más espacio vertical entre semestres */
+    }
+
+    .semestre-columna {
+        min-width: 100%;
+    }
+}
 
